@@ -6,7 +6,12 @@ class CartItem {
   final double price;
   final int quantity;
 
-  CartItem({this.id, this.title, this.price, this.quantity});
+  CartItem({
+    @required this.id,
+    @required this.title,
+    @required this.price,
+    @required this.quantity,
+  });
 }
 
 class CartProvider with ChangeNotifier {
@@ -26,6 +31,11 @@ class CartProvider with ChangeNotifier {
       amount += cartItem.price * cartItem.quantity;
     });
     return amount;
+  }
+
+  void removeItem(String productId) {
+    _items.remove(productId);
+    notifyListeners();
   }
 
   void addItem(
@@ -54,6 +64,33 @@ class CartProvider with ChangeNotifier {
         ),
       );
     }
+    notifyListeners();
+  }
+
+  void removeSingleItem(String productId) {
+    if (!_items.containsKey(productId)) {
+      return;
+    }
+    if (_items[productId].quantity > 1) {
+      _items.update(
+        productId,
+        (prProd) {
+          return CartItem(
+            id: prProd.id,
+            title: prProd.title,
+            price: prProd.price,
+            quantity: prProd.quantity - 1,
+          );
+        },
+      );
+    } else {
+      _items.remove(productId);
+    }
+    notifyListeners();
+  }
+
+  void clearCart() {
+    _items = {};
     notifyListeners();
   }
 }
