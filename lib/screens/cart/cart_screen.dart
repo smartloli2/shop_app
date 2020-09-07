@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/orders_provider.dart';
 
-import '../widgets/cart_item.dart' as ci;
+import 'cart_item.dart' as ci;
 
 class CartScreen extends StatelessWidget {
   static const routeName = '/cart';

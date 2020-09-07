@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/products_provider.dart';
-import 'package:shop_app/screens/edit_product_screen.dart';
+import 'package:shop_app/screens/edit_product_form/edit_product_screen.dart';
 import 'package:shop_app/widgets/app_drawer.dart';
-import 'package:shop_app/widgets/user_product_item.dart';
+import 'package:shop_app/screens/user_products/user_product_item.dart';
 
 class UserProductScreen extends StatelessWidget {
   static const String routeName = '/user-products';
@@ -31,6 +31,7 @@ class UserProductScreen extends StatelessWidget {
           itemBuilder: (_, i) => Column(
             children: [
               UserProductItem(
+                productData.items[i].id,
                 productData.items[i].title,
                 productData.items[i].imageUrl,
               ),
