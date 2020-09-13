@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/providers/products_provider.dart';
+import 'package:shop_app/providers/products.dart';
 import 'package:shop_app/screens/overview/product_item.dart';
 
 class ProductGridView extends StatelessWidget {
@@ -10,7 +10,7 @@ class ProductGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<ProductsProvider>(context);
+    final products = Provider.of<Products>(context);
     final items = showFavotite ? products.favoriteItems : products.items;
 
     return GridView.builder(
